@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
-    val fruitList = listOf<String>("Mango", "Apple", "Banana","Lemon","Pear","Orange")
+class MyRecyclerViewAdapter(val fruitList:List<Fruit>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val listItem = layoutInflater.inflate(R.layout.list_item,parent,false)
@@ -16,7 +16,7 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val fruit = fruitList[position]
-        holder.myTextView.text=fruit
+        holder.bind(fruit)
     }
 
     override fun getItemCount(): Int {
@@ -26,6 +26,15 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
 }
 
 class MyViewHolder(val view:View):RecyclerView.ViewHolder(view){
+    fun bind(fruit: Fruit){
     val myTextView = view.findViewById<TextView>(R.id.tvName)
-
+        myTextView.text=fruit.name
+        view.setOnClickListener{
+            Toast.makeText(
+                view.context,
+                "Selected Fruit is : ${fruit.name}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 }

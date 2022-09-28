@@ -7,6 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+    val fruitList = listOf<Fruit>(
+        Fruit("Mango","Joe"),
+        Fruit( "Apple","Frank"),
+        Fruit("Banana","Ton"),
+        Fruit("Lemon","Alex"),
+        Fruit ("Pear","Jie"),
+        Fruit("Orange","Alex")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setBackgroundColor(Color.YELLOW)
 
         recyclerView.layoutManager=LinearLayoutManager(this)
-        recyclerView.adapter = MyRecyclerViewAdapter()
+        recyclerView.adapter = MyRecyclerViewAdapter(fruitList)
 
 
     }
